@@ -1,10 +1,10 @@
 import './post.css'
 import { useState } from 'react'
-import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import { FaHeart, FaRegHeart, FaTrashAlt } from 'react-icons/fa'
 
 function Post({ titulo, imagem, conteudo }) {
     const [isLiked, setIsLiked] = useState(false)
-    const [likes, setLikes] = useState(15)
+    const [likes, setLikes] = useState(88)
     const [img, setImg] = useState(imagem)
 
     function handleLike() {
@@ -25,6 +25,11 @@ function Post({ titulo, imagem, conteudo }) {
     return (
         <div className="post">
             <h1 className="header">{titulo}</h1>
+            <div className='bin'>
+                <span>
+                    <FaTrashAlt/>
+                </span>
+            </div>
             <img src={img} alt={titulo} onClick={handleRandomizedImg}/>
             <p className="content">{conteudo}</p>
             <div className='curtidas'>
