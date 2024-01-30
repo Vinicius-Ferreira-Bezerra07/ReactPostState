@@ -5,6 +5,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa'
 function Post({ titulo, imagem, conteudo }) {
     const [isLiked, setIsLiked] = useState(false)
     const [likes, setLikes] = useState(15)
+    const [img, setImg] = useState(imagem)
 
     function handleLike() {
         if (isLiked) {
@@ -16,10 +17,15 @@ function Post({ titulo, imagem, conteudo }) {
         setIsLiked(!isLiked)
     }
 
+    function handleRandomizedImg(){
+        let i = img.substring(0, imagem.length - 2)
+        setImg( i + (Math.random() * 88))
+    }
+
     return (
         <div className="post">
             <h1 className="header">{titulo}</h1>
-            <img src={imagem} alt={titulo} />
+            <img src={img} alt={titulo} onClick={handleRandomizedImg}/>
             <p className="content">{conteudo}</p>
             <div className='curtidas'>
                 <span>{likes} curtidas</span>
