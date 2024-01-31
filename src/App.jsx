@@ -1,7 +1,16 @@
 import Post from "./components/Post";
 import { useState } from "react";
+import { FaFolderPlus } from "react-icons/fa";
+import './components/post.css'
 
 function App() {
+  const newPost = {
+    id:Math.random()*1000,
+    titulo:"teste de adição",
+    imagem:"https://picsum.photos/200/200?random=4",
+    conteudo:"Conteudo da postagem a ser adicionada"
+  }
+
   const [ postagens, setPostagemns] = useState([
     {
       id:0,
@@ -27,10 +36,23 @@ function App() {
   function apagarPost(postId) {
     setPostagemns(postagens.filter(p => p.id !== postId))
   }
+
+  function handleAddPost(){
+    const posts = [...postagens, newPost]
+    setPostagemns(posts)
+  }
+
   return (
-    <div>
-      <h1>React Blog</h1>
-      <p>Postagens do blog</p>
+    <div className="main">
+      <div className="header">
+        <div>
+          <h1>React Blog</h1>
+          <p>Postagens do blog</p>
+        </div>
+        <div className="addPost">
+          <span> <FaFolderPlus onClick={handleAddPost}/> </span>
+        </div>
+      </div>
       {postagens.map(p => (
         <Post
           key={p.id}
